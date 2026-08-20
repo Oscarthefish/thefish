@@ -1,0 +1,28 @@
+{
+  "name": "thefish-nz",
+  "version": "1.0.0",
+  "description": "thefish.nz personal site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oscarthefish/thefish.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Oscarthefish/thefish/issues"
+  },
+  "homepage": "https://github.com/Oscarthefish/thefish#readme",
+  "private": "true",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

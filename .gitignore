@@ -1,0 +1,7 @@
+node_modules/
+_site/
+.DS_Store
+.cache/
+
+# WordPress export - contains raw data (commenter emails/IPs, drafts); keep local only
+*.WordPress.*.xml
