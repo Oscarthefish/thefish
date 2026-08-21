@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Historical WordPress URL for the About page. Protects old inbound
+# links/search indexing from when the site was OscarThePhish-branded.
+[[redirects]]
+  from = "/man_oscar/"
+  to = "/man_jason/"
+  status = 301
+  force = true
+
+# The About page briefly lived at /about/ during this rebuild.
+[[redirects]]
+  from = "/about/"
+  to = "/man_jason/"
+  status = 301
+  force = true

@@ -1,0 +1,42 @@
+---
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag }}/"
+layout: base.njk
+eleventyComputed:
+  title: "{{ tag }}"
+  seoTitle: "Posts tagged “{{ tag }}” | Jason Hill"
+  description: "Posts and investigations tagged {{ tag }} on Jason Hill's site."
+---
+<section class="page-section">
+  <div class="wrap">
+    <p class="prompt">visitor@thefish.nz<span class="accent">:~$</span> grep -r {{ tag }}<span class="cursor"></span></p>
+    <h1>#{{ tag }}</h1>
+    <div class="tag-cloud">
+      <a href="/posts/" class="tag">all</a>
+      {% for t in collections.tagList %}
+      <a href="/tags/{{ t }}/" class="tag{{ ' active' if t == tag }}">{{ t }}</a>
+      {% endfor %}
+    </div>
+    <div class="list-card">
+      <ul class="post-list">
+        {% for post in collections.posts | reverse %}
+        {% if tag in post.data.tags %}
+        <li class="post-list-item">
+          <a class="post-list-title" href="{{ post.url }}">{{ post.data.title }}</a>
+          <time class="post-list-date" datetime="{{ post.data.date | htmlDateString }}">{{ post.data.date | postDate }}</time>
+          {% if post.data.tags %}
+          <span class="post-tags">
+            {% for t in post.data.tags %}{% if t != "posts" %}<a class="tag" href="/tags/{{ t }}/">{{ t }}</a>{% endif %}{% endfor %}
+          </span>
+          {% endif %}
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <p class="see-all"><a class="card-link" href="/posts/">&larr; all posts</a></p>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+---
+layout: base.njk
+---
+<section class="page-section">
+  <div class="wrap prose">
+    <article class="post">
+      <div class="terminal-card">
+        <div class="card-chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+        <div class="card-content">
+          <header class="post-header">
+            <h1>{{ title }}</h1>
+            <p class="post-meta">
+              <time datetime="{{ date | htmlDateString }}">{{ date | postDate }}</time>
+              {% if tags %}
+              <span class="post-tags">
+                {% for tag in tags %}{% if tag != "posts" %}<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>{% endif %}{% endfor %}
+              </span>
+              {% endif %}
+            </p>
+          </header>
+
+          {% if coverImage %}
+          <img class="post-cover{{ ' post-cover-badge' if coverBadge }}" src="/images/{{ coverImage }}" alt="{{ coverImageAlt or '' }}">
+          {% endif %}
+
+          <div class="post-content">
+            {{ content | safe }}
+          </div>
+        </div>
+      </div>
+
+      <p class="post-back"><a href="/posts/">&larr; back to all posts</a></p>
+    </article>
+  </div>
+</section>

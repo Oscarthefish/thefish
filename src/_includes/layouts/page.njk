@@ -1,0 +1,14 @@
+---
+layout: base.njk
+---
+<section class="page-section">
+  <div class="wrap prose">
+    <article class="page">
+      {% if section %}
+      <p class="prompt">visitor@thefish.nz<span class="accent">:~$</span> {{ section }}<span class="cursor"></span></p>
+      {% endif %}
+      <h1>{{ title }}</h1>
+      {{ content | safe }}
+    </article>
+  </div>
+</section>

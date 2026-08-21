@@ -1,0 +1,33 @@
+---
+layout: base.njk
+title: "Posts"
+permalink: /posts/
+section: "posts"
+---
+<section class="page-section">
+  <div class="wrap">
+    <p class="prompt">visitor@thefish.nz<span class="accent">:~$</span> {{ section }}<span class="cursor"></span></p>
+    <h1>Posts</h1>
+    <div class="tag-cloud">
+      <a href="/posts/" class="tag active">all</a>
+      {% for t in collections.tagList %}
+      <a href="/tags/{{ t }}/" class="tag">{{ t }}</a>
+      {% endfor %}
+    </div>
+    <div class="list-card">
+      <ul class="post-list">
+        {% for post in collections.posts | reverse %}
+        <li class="post-list-item">
+          <a class="post-list-title" href="{{ post.url }}">{{ post.data.title }}</a>
+          <time class="post-list-date" datetime="{{ post.data.date | htmlDateString }}">{{ post.data.date | postDate }}</time>
+          {% if post.data.tags %}
+          <span class="post-tags">
+            {% for tag in post.data.tags %}{% if tag != "posts" %}<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>{% endif %}{% endfor %}
+          </span>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,71 @@
 ---
 layout: base.njk
-title: thefish.nz
+title: "Home"
+section: "home"
+seoTitle: "Jason Hill | Cyber Security, OSINT & Digital Investigations"
+description: "Personal site of Jason Hill, a New Zealand cyber security practitioner interested in OSINT, digital investigations, security operations, threat research and CTFs."
 ---
-<h1>thefish.nz</h1>
-<p>Eleventy project scaffolded. Content migration coming next.</p>
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="avatar-ring">
+      <img class="avatar" src="/images/oscar-avatar.jpg" alt="Oscar the Grouch, the mascot behind the OscarThePhish alias">
+    </div>
+    <div class="hero-text">
+      <p class="prompt">visitor@thefish.nz<span class="accent">:~$</span> {{ section }}<span class="cursor"></span></p>
+      <h1>{{ site.name }}</h1>
+      <p class="hero-subtitle">{{ site.tagline }}</p>
+      <p>Security operations by trade. OSINT by curiosity, persistence, and an inability to leave an interesting clue alone.</p>
+      <div class="btn-row">
+        {% set latest = collections.posts | reverse | limit(1) %}
+        <a class="btn primary" href="{{ latest[0].url }}">View latest post</a>
+        <a class="btn ghost" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="latest-post">
+  <div class="wrap">
+    <p class="eyebrow">// latest posts</p>
+    <h2>Recent Posts</h2>
+
+    <div class="latest-post-grid">
+      {% for post in collections.posts | reverse | limit(3) %}
+      <div class="terminal-card">
+        <div class="card-chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+        <div class="card-body">
+          <h3>{{ post.data.title }}</h3>
+          <time class="post-list-date">{{ post.data.date | postDate }}</time>
+          {% if post.data.tags %}
+          <div class="tags">
+            {% for tag in post.data.tags %}{% if tag != "posts" %}<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>{% endif %}{% endfor %}
+          </div>
+          {% endif %}
+          <a class="card-link" href="{{ post.url }}">Read post &rarr;</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <p class="see-all"><a class="card-link" href="/posts/">See all posts &rarr;</a></p>
+  </div>
+</section>
+
+<section class="contact-teaser">
+  <div class="wrap">
+    <p class="eyebrow">$ connect --linkedin</p>
+    <h2>Get in touch</h2>
+    <p class="lead">Questions about OSINT, security operations, or an interesting rabbit hole to share? LinkedIn is the best place to reach me.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="{{ site.linkedin }}" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a class="btn ghost" href="mailto:{{ site.email }}">Email</a>
+    </div>
+    <div class="socials">
+      <span class="socials-label">Other places:</span>
+      <a href="https://twitter.com/{{ site.twitter }}">@{{ site.twitter }}</a>
+      <a href="https://github.com/{{ site.github }}">GitHub</a>
+    </div>
+  </div>
+</section>

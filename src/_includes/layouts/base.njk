@@ -3,9 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }}</title>
+  {% if seoTitle %}
+    {% set pageTitle = seoTitle %}
+  {% elif title %}
+    {% set pageTitle = title + " · " + site.title %}
+  {% else %}
+    {% set pageTitle = site.title %}
+  {% endif %}
+  {% set pageDescription = seoDescription or description or site.description %}
+  {% set pageUrl = site.url + page.url %}
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  <link rel="canonical" href="{{ pageUrl }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:url" content="{{ pageUrl }}">
+  <meta property="og:image" content="{{ site.url }}/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ pageDescription }}">
+  <meta name="twitter:image" content="{{ site.url }}/assets/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" href="data:,">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jason Hill",
+    "alternateName": ["Oscar Fish", "OscarThePhish"],
+    "url": "{{ site.url }}",
+    "sameAs": [
+      "{{ site.linkedin }}",
+      "https://twitter.com/{{ site.twitter }}",
+      "https://github.com/{{ site.github }}"
+    ],
+    "description": "Cyber security practitioner with a focus on OSINT, digital investigations and security operations."
+  }
+  </script>
+  <script>
+    (function () {
+      var saved = localStorage.getItem("theme");
+      if (saved === "light") document.documentElement.setAttribute("data-theme", "light");
+    })();
+  </script>
 </head>
 <body>
-  {{ content | safe }}
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <a class="logo" href="/">jason</a>
+      <nav class="tabs">
+        <a href="/" class="{{ 'active' if page.url == '/' }}">cd ~</a>
+        <a href="/posts/" class="{{ 'active' if page.url.startsWith('/posts/') }}">cd posts_</a>
+        <a href="/man_jason/" class="{{ 'active' if page.url == '/man_jason/' }}">man jason_</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark theme">
+        <span class="icon-moon">&#9789;</span>
+        <span class="icon-sun">&#9728;</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <p class="footer-tagline">The Fish has probably gone down another rabbit hole.</p>
+    <p>&copy; {{ currentYear }} {{ site.name }}. Built with Eleventy.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("themeToggle");
+      btn.addEventListener("click", function () {
+        var isLight = document.documentElement.getAttribute("data-theme") === "light";
+        if (isLight) {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem("theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+          localStorage.setItem("theme", "light");
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

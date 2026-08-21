@@ -5,3 +5,5 @@ _site/
 
 # WordPress export - contains raw data (commenter emails/IPs, drafts); keep local only
 *.WordPress.*.xml
+wp-export/
+wp-export-fresh/
