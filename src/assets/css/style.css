@@ -250,6 +250,10 @@ section { padding: 4.5rem 0; }
   object-fit: cover;
   background: var(--bg);
 }
+.avatar-pixel {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
 .prompt {
   font-family: var(--font-mono);
   color: var(--fg-muted);
