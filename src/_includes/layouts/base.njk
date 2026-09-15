@@ -95,5 +95,42 @@
       });
     })();
   </script>
+
+  <script>
+    (function () {
+      var blocks = document.querySelectorAll(".post-content pre code.language-text");
+      blocks.forEach(function (code) {
+        var pre = code.parentElement;
+        var wrapper = document.createElement("div");
+        wrapper.className = "query-block";
+        var bar = document.createElement("div");
+        bar.className = "query-block-bar";
+        var label = document.createElement("span");
+        label.textContent = "Google query";
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "copy-btn";
+        btn.textContent = "Copy";
+        btn.setAttribute("aria-label", "Copy query to clipboard");
+        bar.appendChild(label);
+        bar.appendChild(btn);
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(bar);
+        wrapper.appendChild(pre);
+        btn.addEventListener("click", function () {
+          var text = code.textContent.replace(/\n$/, "");
+          if (!navigator.clipboard) return;
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = "Copied";
+            btn.classList.add("copied");
+            setTimeout(function () {
+              btn.textContent = "Copy";
+              btn.classList.remove("copied");
+            }, 1500);
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

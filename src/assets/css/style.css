@@ -445,6 +445,37 @@ section { padding: 4.5rem 0; }
 .post-back a { color: var(--accent-teal); }
 .post-back a:hover { text-decoration: underline; }
 
+/* ---------- series box (multi-part field guides) ---------- */
+.series-box {
+  margin: 0 0 1.75rem;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+}
+.series-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg-muted);
+  margin: 0 0 0.5rem;
+}
+.series-box ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+.series-box li { margin: 0.25rem 0; }
+.series-box a {
+  color: var(--accent-teal);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+}
+.series-box a:hover { text-decoration-color: currentColor; }
+.series-current { color: var(--fg-muted); }
+
 /* ---------- spoilers / details ---------- */
 .post-content details {
   background: var(--bg);
@@ -509,9 +540,213 @@ footer {
   font-style: italic;
 }
 
+/* ---------- article extras: contents box ---------- */
+.post-content .contents-box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  padding: 1.5rem 1.75rem;
+  margin: 1.75rem 0 2rem;
+}
+.post-content .contents-box p.contents-lead {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  margin: 0 0 1.1rem;
+}
+.post-content .contents-box h3 {
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 1.25rem 0 0.6rem;
+}
+.post-content .contents-box h3:first-of-type { margin-top: 0; }
+#found-something.contents-box h3 {
+  font-size: 1.3rem;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--fg);
+  margin: 0 0 1rem;
+}
+.post-content .contents-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.15rem 2rem;
+}
+.post-content .contents-box ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.post-content .contents-box li { margin: 0.32rem 0; }
+.post-content .contents-box a {
+  font-family: var(--font-mono);
+  font-size: 0.87rem;
+  color: var(--fg);
+  text-decoration-color: var(--border);
+}
+.post-content .contents-box a:hover { color: var(--accent-teal); text-decoration-color: currentColor; }
+@media (max-width: 700px) {
+  .post-content .contents-grid { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ---------- article extras: callouts ---------- */
+.post-content .callout {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-teal);
+  border-radius: 6px;
+}
+.post-content .callout > *:last-child { margin-bottom: 0; }
+.post-content .callout-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+  color: var(--accent-teal);
+}
+.post-content .callout--tip { border-left-color: var(--accent-teal); }
+.post-content .callout--tip .callout-label { color: var(--accent-teal); }
+.post-content .callout--tracelabs { border-left-color: var(--accent-violet); }
+.post-content .callout--tracelabs .callout-label { color: var(--accent-violet); }
+.post-content .callout--watch { border-left-color: var(--accent-amber); }
+.post-content .callout--watch .callout-label { color: var(--accent-amber); }
+.post-content .callout--example {
+  border-left-color: var(--border);
+  background: var(--bg-alt);
+}
+.post-content .callout--example .callout-label { color: var(--fg-muted); }
+.post-content .callout--pivot { border-left-color: var(--accent-teal); }
+.post-content .callout--pivot .callout-label { color: var(--accent-teal); }
+.post-content .callout--corroborate {
+  border-left-color: var(--border);
+  background: var(--bg-alt);
+}
+.post-content .callout--corroborate .callout-label { color: var(--fg-muted); }
+
+/* ---------- article extras: field checklist ---------- */
+.post-content .checklist {
+  list-style: none;
+  margin: 1.25rem 0;
+  padding: 0;
+}
+.post-content .checklist li { margin: 0.55rem 0; }
+.post-content .checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+}
+.post-content .checklist input[type="checkbox"] {
+  margin-top: 0.2rem;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  accent-color: var(--accent-teal);
+}
+.post-content .checklist li.emphasis label { font-weight: 700; color: var(--fg); }
+
+/* ---------- article extras: copyable query blocks ---------- */
+.post-content .query-block {
+  margin: 1.25rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+.post-content .query-block-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.4rem 0.6rem 0.4rem 0.85rem;
+  background: var(--bg-tab);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--fg-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.post-content .query-block pre {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+.post-content .copy-btn {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--fg-muted);
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: color 0.15s, border-color 0.15s;
+}
+.post-content .copy-btn:hover,
+.post-content .copy-btn:focus-visible { color: var(--accent-teal); border-color: var(--accent-teal); }
+.post-content .copy-btn.copied { color: var(--accent-teal); border-color: var(--accent-teal); }
+
+/* ---------- article extras: flow / framework diagrams ---------- */
+.post-content pre.flow-diagram {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: var(--fg-muted);
+  text-align: center;
+  background: var(--bg-alt);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+.post-content pre.flow-diagram .step { color: var(--fg); }
+.post-content pre.flow-diagram .arrow { color: var(--accent-teal); }
+
+/* ---------- article extras: tables ---------- */
+.post-content .table-scroll {
+  overflow-x: auto;
+  margin: 1.25rem 0 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.post-content .table-scroll table { margin: 0; border: none; border-radius: 0; }
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.post-content th, .post-content td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+.post-content th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  background: var(--bg-tab);
+  white-space: nowrap;
+}
+.post-content td code, .post-content th code { white-space: nowrap; }
+
 /* ---------- accessibility ---------- */
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible {
   outline: 2px solid var(--accent-teal);
   outline-offset: 2px;
 }

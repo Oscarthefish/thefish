@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+  <title id="title">Google Dorking for Trace Labs: 50 OSINT Investigation Pivots</title>
+  <desc id="desc">A terminal-style illustration of pivoting from one identifier to another.</desc>
+
+  <rect x="0" y="0" width="1200" height="630" fill="#1c1c1c" />
+
+  <!-- chrome bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1c1c1c" />
+  <rect x="0" y="63" width="1200" height="1" fill="#444444" />
+  <circle cx="40" cy="32" r="8" fill="#c07a7a" />
+  <circle cx="66" cy="32" r="8" fill="#b4a26a" />
+  <circle cx="92" cy="32" r="8" fill="#7fada0" />
+  <rect x="140" y="16" width="240" height="30" rx="15" fill="#262626" stroke="#444444" stroke-width="1" />
+  <text x="162" y="36" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#8f8f8f">pivot --next</text>
+
+  <!-- prompt -->
+  <text x="600" y="220" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="20" fill="#8f8f8f">investigator@thefish.nz:~$</text>
+
+  <!-- identifier A -->
+  <text x="600" y="278" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="36" font-weight="600" fill="#d7dce1">"johnsmith82"</text>
+
+  <!-- arrow -->
+  <line x1="600" y1="300" x2="600" y2="340" stroke="#7fada0" stroke-width="4" />
+  <polygon points="600,352 590,332 610,332" fill="#7fada0" />
+
+  <!-- identifier B -->
+  <text x="600" y="398" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="36" font-weight="600" fill="#b4a26a">"john@example.com"</text>
+
+  <!-- eyebrow -->
+  <text x="600" y="460" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#7fada0">50 OSINT INVESTIGATION PIVOTS</text>
+</svg>

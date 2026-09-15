@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+  <title id="title">Google Dorking for OSINT</title>
+  <desc id="desc">A terminal-style illustration of a Google search operator query.</desc>
+
+  <rect x="0" y="0" width="1200" height="630" fill="#1c1c1c" />
+
+  <!-- chrome bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1c1c1c" />
+  <rect x="0" y="63" width="1200" height="1" fill="#444444" />
+  <circle cx="40" cy="32" r="8" fill="#c07a7a" />
+  <circle cx="66" cy="32" r="8" fill="#b4a26a" />
+  <circle cx="92" cy="32" r="8" fill="#7fada0" />
+  <rect x="140" y="16" width="280" height="30" rx="15" fill="#262626" stroke="#444444" stroke-width="1" />
+  <text x="162" y="36" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#8f8f8f">google.com/search</text>
+
+  <!-- magnifying glass -->
+  <g stroke="#7fada0" stroke-width="6" fill="none" stroke-linecap="round">
+    <circle cx="600" cy="200" r="34" />
+    <line x1="624" y1="224" x2="654" y2="254" />
+  </g>
+
+  <!-- terminal prompt -->
+  <text x="600" y="308" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="20" fill="#8f8f8f">investigator@thefish.nz:~$</text>
+
+  <!-- the query -->
+  <text x="600" y="368" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="40" font-weight="600" fill="#d7dce1">site:linkedin.com/in <tspan fill="#b4a26a">"Jane Doe"</tspan></text>
+
+  <!-- eyebrow -->
+  <text x="600" y="428" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#7fada0">GOOGLE DORKING FOR OSINT</text>
+</svg>

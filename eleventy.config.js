@@ -29,6 +29,10 @@ export default function (eleventyConfig) {
     return [...tagSet].sort();
   });
 
+  eleventyConfig.addCollection("fieldGuides", (collectionApi) =>
+    collectionApi.getFilteredByTag("field-guide"),
+  );
+
   return {
     dir: {
       input: "src",

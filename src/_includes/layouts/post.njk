@@ -21,6 +21,17 @@ layout: base.njk
             </p>
           </header>
 
+          {% if tags and "field-guide" in tags %}
+          <div class="series-box">
+            <p class="series-label">OSINT field guides</p>
+            <ol>
+              {% for guide in collections.fieldGuides %}
+              <li>{% if guide.url == page.url %}<strong>{{ guide.data.title }}</strong> <span class="series-current">(this article)</span>{% else %}<a href="{{ guide.url }}">{{ guide.data.title }}</a>{% endif %}</li>
+              {% endfor %}
+            </ol>
+          </div>
+          {% endif %}
+
           {% if coverImage %}
           <img class="post-cover{{ ' post-cover-badge' if coverBadge }}" src="/images/{{ coverImage }}" alt="{{ coverImageAlt or '' }}">
           {% endif %}
