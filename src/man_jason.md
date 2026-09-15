@@ -13,7 +13,7 @@ Jason Hill
 
 ### ALIASES
 
-Oscar Fish, OscarThePhish, SpaceCowboy
+Oscar Fish, OscarThePhish
 
 ### LOCATION
 
@@ -23,7 +23,11 @@ Auckland, New Zealand
 
 My relationship with computers started in the 1980s with a second-hand Commodore 64 my parents bought me.
 
-I spent hundreds of hours in front of it playing games, experimenting with BASIC, trying to understand how things worked and distributing entirely legitimate *backup copies* of software around school under the alias **SpaceCowboy**.
+I spent hundreds of hours in front of it playing games, experimenting with BASIC and trying to understand how things worked.
+
+The games themselves were laughably simple by any modern standard. A handful of colours, blocky sprites, sound effects that were really just the sound chip doing its best impression of an explosion. None of that mattered. A few dozen pixels were enough to build an entire world in your head, and having to fill in the rest yourself somehow made the imagination work harder, not less.
+
+A bit later came dial-up bulletin boards, which came with their own tax on the household. Getting online meant tying up the one phone line in the house, and everybody knew exactly what that shrieking modem handshake meant: don't touch the phone. Someone inevitably would anyway, picking up an extension somewhere else in the house to make a call, and the whole connection would die instantly, mid-download, mid-conversation, mid-everything. There's a very particular kind of frustration reserved for losing a file at ninety-four percent because someone needed to ring their friend.
 
 I can still hear the 8-bit loading music.
 
