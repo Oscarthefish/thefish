@@ -13,8 +13,12 @@
   --font-mono: 'JetBrains Mono', ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-sans: 'Inter', -apple-system, "Segoe UI", system-ui, Roboto, sans-serif;
   --radius: 10px;
-  --content-w: 960px;
-  --prose-w: 42rem;
+  /* Fixed up to typical laptop widths (~1366-1440px), so nothing changes
+     there; scales up on genuinely wide desktop monitors instead of leaving
+     the extra space unused. Caps rather than growing indefinitely, since
+     text set much wider than this gets harder to read line to line. */
+  --content-w: clamp(960px, 72vw, 1200px);
+  --prose-w: clamp(42rem, 46vw, 52rem);
   --body-bg: var(--bg);
   --card-shadow: none;
 }
