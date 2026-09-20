@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+  <title id="title">One email, three directions of investigation</title>
+  <desc id="desc">A terminal-style illustration of a central email node connected to headers, a URL and an attachment, leading into a user-interaction node that branches into an endpoint process tree, a network connection, and an identity session node.</desc>
+
+  <rect x="0" y="0" width="1200" height="630" fill="#1c1c1c" />
+
+  <!-- chrome bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1c1c1c" />
+  <rect x="0" y="63" width="1200" height="1" fill="#444444" />
+  <circle cx="40" cy="32" r="8" fill="#c07a7a" />
+  <circle cx="66" cy="32" r="8" fill="#b4a26a" />
+  <circle cx="92" cy="32" r="8" fill="#7fada0" />
+  <rect x="140" y="16" width="220" height="30" rx="15" fill="#262626" stroke="#444444" stroke-width="1" />
+  <text x="162" y="36" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#8f8f8f">message.eml</text>
+
+  <!-- email cluster, left -->
+  <g stroke="#444444" stroke-width="1.4">
+    <line x1="200" y1="315" x2="320" y2="230" />
+    <line x1="200" y1="315" x2="320" y2="315" />
+    <line x1="200" y1="315" x2="320" y2="400" />
+    <line x1="320" y1="230" x2="440" y2="315" />
+    <line x1="320" y1="315" x2="440" y2="315" />
+    <line x1="320" y1="400" x2="440" y2="315" />
+  </g>
+  <circle cx="200" cy="315" r="32" fill="#262626" stroke="#7fada0" stroke-width="2.5" />
+  <text x="200" y="320" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#7fada0">email</text>
+
+  <circle cx="320" cy="230" r="20" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <text x="320" y="264" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f">headers</text>
+
+  <circle cx="320" cy="315" r="20" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <text x="320" y="345" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#8f8f8f">url</text>
+
+  <circle cx="320" cy="400" r="20" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <text x="320" y="434" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f">attachment</text>
+
+  <!-- interaction node, centre -->
+  <circle cx="440" cy="315" r="26" fill="#262626" stroke="#b4a26a" stroke-width="2.5" />
+  <text x="440" y="311" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#b4a26a">user</text>
+  <text x="440" y="323" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#b4a26a">interaction</text>
+
+  <!-- branching outward, right -->
+  <g stroke="#565656" stroke-width="1.4">
+    <line x1="466" y1="315" x2="620" y2="200" />
+    <line x1="466" y1="315" x2="620" y2="315" />
+    <line x1="466" y1="315" x2="620" y2="430" />
+  </g>
+
+  <!-- endpoint process tree -->
+  <g stroke="#7fada0" stroke-width="1.4">
+    <line x1="620" y1="200" x2="700" y2="170" />
+    <line x1="700" y1="170" x2="780" y2="150" />
+  </g>
+  <circle cx="620" cy="200" r="16" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <circle cx="700" cy="170" r="14" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <circle cx="780" cy="150" r="12" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <text x="620" y="180" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f">endpoint</text>
+
+  <!-- network -->
+  <circle cx="620" cy="315" r="16" fill="#1c1c1c" stroke="#c07a7a" stroke-width="1.8" stroke-dasharray="2.5 3" />
+  <text x="620" y="345" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f">network</text>
+
+  <!-- identity/session -->
+  <circle cx="620" cy="430" r="16" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <circle cx="700" cy="460" r="14" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <line x1="634" y1="437" x2="686" y2="454" stroke="#7fada0" stroke-width="1.4" />
+  <text x="620" y="460" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f">session</text>
+
+  <!-- eyebrow -->
+  <text x="600" y="540" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#7fada0">THE EMAIL IS ONLY THE BEGINNING</text>
+</svg>
