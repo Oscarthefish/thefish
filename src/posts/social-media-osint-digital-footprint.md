@@ -1,6 +1,7 @@
 ---
 title: "Social Media OSINT: From One Profile to a Digital Footprint"
 date: 2026-09-18
+series: "osint"
 categories:
   - "osint"
   - "social-media"

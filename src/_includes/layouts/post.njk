@@ -21,11 +21,12 @@ layout: base.njk
             </p>
           </header>
 
+          {% set relatedGuides = collections.fieldGuides | filterBySeries(series) %}
           {% if tags and "field-guide" in tags %}
           <div class="series-box">
-            <p class="series-label">OSINT field guides</p>
+            <p class="series-label">Field guides</p>
             <ol>
-              {% for guide in collections.fieldGuides %}
+              {% for guide in relatedGuides %}
               <li>{% if guide.url == page.url %}<strong>{{ guide.data.title }}</strong> <span class="series-current">(this article)</span>{% else %}<a href="{{ guide.url }}">{{ guide.data.title }}</a>{% endif %}</li>
               {% endfor %}
             </ol>

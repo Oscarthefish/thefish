@@ -1,6 +1,7 @@
 ---
 title: "OSINT Corroboration: How Do I Know I've Found the Right Person?"
 date: 2026-09-19
+series: "osint"
 categories:
   - "osint"
   - "investigation"

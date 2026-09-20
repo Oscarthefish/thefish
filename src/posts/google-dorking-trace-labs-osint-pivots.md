@@ -1,6 +1,7 @@
 ---
 title: "Google Dorking for Trace Labs: 50 OSINT Investigation Pivots"
 date: 2026-09-17
+series: "osint"
 categories:
   - "osint"
   - "trace-labs"

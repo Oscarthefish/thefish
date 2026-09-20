@@ -33,6 +33,11 @@ export default function (eleventyConfig) {
     collectionApi.getFilteredByTag("field-guide"),
   );
 
+  eleventyConfig.addFilter("filterBySeries", (guides, series) => {
+    if (!series) return guides;
+    return (guides || []).filter((guide) => guide.data.series === series);
+  });
+
   return {
     dir: {
       input: "src",

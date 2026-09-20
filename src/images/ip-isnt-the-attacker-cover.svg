@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+  <title id="title">One IP address, many possible sources</title>
+  <desc id="desc">A terminal-style illustration of a firewall log line, src_ip=198.51.100.42, with NAT, VPN, PROXY and CGNAT tags fanning out beneath it on connecting lines, representing the many possible sources one IP address can hide.</desc>
+
+  <rect x="0" y="0" width="1200" height="630" fill="#1c1c1c" />
+
+  <!-- chrome bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1c1c1c" />
+  <rect x="0" y="63" width="1200" height="1" fill="#444444" />
+  <circle cx="40" cy="32" r="8" fill="#c07a7a" />
+  <circle cx="66" cy="32" r="8" fill="#b4a26a" />
+  <circle cx="92" cy="32" r="8" fill="#7fada0" />
+  <rect x="140" y="16" width="220" height="30" rx="15" fill="#262626" stroke="#444444" stroke-width="1" />
+  <text x="162" y="36" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#8f8f8f">firewall.log</text>
+
+  <!-- log line -->
+  <text x="600" y="150" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" font-weight="600">
+    <tspan fill="#8f8f8f">src_ip=</tspan><tspan fill="#d7dce1">198.51.100.42</tspan>
+  </text>
+
+  <!-- connecting lines fanning down to four possible sources -->
+  <g stroke="#444444" stroke-width="1.5" opacity="0.85">
+    <line x1="600" y1="175" x2="255" y2="330" />
+    <line x1="600" y1="175" x2="465" y2="330" />
+    <line x1="600" y1="175" x2="735" y2="330" />
+    <line x1="600" y1="175" x2="945" y2="330" />
+  </g>
+
+  <!-- four candidate source chips -->
+  <g font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="20" font-weight="600" text-anchor="middle">
+    <rect x="185" y="335" width="140" height="46" rx="23" fill="#262626" stroke="#7fada0" stroke-width="2" />
+    <text x="255" y="364" fill="#7fada0">NAT</text>
+
+    <rect x="385" y="335" width="160" height="46" rx="23" fill="#262626" stroke="#c07a7a" stroke-width="2" />
+    <text x="465" y="364" fill="#c07a7a">VPN</text>
+
+    <rect x="645" y="335" width="180" height="46" rx="23" fill="#262626" stroke="#b4a26a" stroke-width="2" />
+    <text x="735" y="364" fill="#b4a26a">PROXY</text>
+
+    <rect x="855" y="335" width="180" height="46" rx="23" fill="#262626" stroke="#7fada0" stroke-width="2" />
+    <text x="945" y="364" fill="#7fada0">CGNAT</text>
+  </g>
+
+  <!-- question mark, centred beneath, representing the unresolved identity -->
+  <circle cx="600" cy="470" r="34" fill="none" stroke="#666666" stroke-width="2" stroke-dasharray="4 5" />
+  <text x="600" y="482" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="32" font-weight="700" fill="#666666">?</text>
+
+  <!-- eyebrow -->
+  <text x="600" y="560" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#7fada0">THE IP ISN'T THE ATTACKER</text>
+</svg>

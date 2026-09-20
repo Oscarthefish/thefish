@@ -1,6 +1,7 @@
 ---
 title: "Google Dorking for OSINT: The Practical Investigator's Guide"
 date: 2026-09-16
+series: "osint"
 categories:
   - "osint"
   - "google-dorking"
