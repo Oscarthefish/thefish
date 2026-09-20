@@ -650,15 +650,15 @@ footer {
 }
 .post-content .checklist li.emphasis label { font-weight: 700; color: var(--fg); }
 
-/* ---------- article extras: copyable query blocks ---------- */
-.post-content .query-block {
+/* ---------- article extras: copyable terminal blocks ---------- */
+.post-content .copy-block {
   margin: 1.25rem 0;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--bg-alt);
 }
-.post-content .query-block-bar {
+.post-content .copy-block-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -667,12 +667,10 @@ footer {
   background: var(--bg-tab);
   border-bottom: 1px solid var(--border);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   color: var(--fg-muted);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
-.post-content .query-block pre {
+.post-content .copy-block pre {
   margin: 0;
   border: none;
   border-radius: 0;

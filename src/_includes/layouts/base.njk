@@ -102,16 +102,16 @@
       blocks.forEach(function (code) {
         var pre = code.parentElement;
         var wrapper = document.createElement("div");
-        wrapper.className = "query-block";
+        wrapper.className = "copy-block";
         var bar = document.createElement("div");
-        bar.className = "query-block-bar";
+        bar.className = "copy-block-bar";
         var label = document.createElement("span");
-        label.textContent = "Google query";
+        label.textContent = "visitor@thefish.nz:~$";
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "copy-btn";
         btn.textContent = "Copy";
-        btn.setAttribute("aria-label", "Copy query to clipboard");
+        btn.setAttribute("aria-label", "Copy to clipboard");
         bar.appendChild(label);
         bar.appendChild(btn);
         pre.parentNode.insertBefore(wrapper, pre);

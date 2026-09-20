@@ -83,7 +83,7 @@ Before getting into SPF specifically, it's worth being explicit about something 
 
 Here's the thing that makes this concrete:
 
-```text
+```
 From: PayPal Security <security@paypal.com>
 Return-Path: bounce@mailer.attacker-example.com
 ```
@@ -147,7 +147,7 @@ DKIM (DomainKeys Identified Mail) uses public-key cryptography to let a domain c
 
 A DKIM signature header looks something like this:
 
-```text
+```
 DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=selector1; c=relaxed/relaxed;
 ```
 
@@ -158,7 +158,7 @@ The two fields that matter most day to day:
 
 The public key itself lives in DNS, at a predictable location built from the selector and signing domain:
 
-```text
+```
 selector1._domainkey.example.com
 ```
 
@@ -180,13 +180,13 @@ This is worth stating explicitly, because it's easy to read `dkim=pass` and stop
 
 Say the visible sender is:
 
-```text
+```
 From: accounts@example.com
 ```
 
 but the DKIM signature reads:
 
-```text
+```
 DKIM-Signature: ... d=mailer.example.net
 ```
 
@@ -201,7 +201,7 @@ DMARC passes if **either** of the following is true:
 - SPF passes **and** SPF is aligned with the From domain, or
 - DKIM passes **and** DKIM is aligned with the From domain
 
-```text
+```
                  DMARC
                    |
         +----------+----------+
@@ -227,7 +227,7 @@ Alignment asks: does the domain that was actually authenticated, by SPF or DKIM,
 
 **Example, aligned via SPF:**
 
-```text
+```
 From: alerts@example.com
 ```
 
@@ -237,7 +237,7 @@ Under relaxed alignment, the default most domains use, these align, because they
 
 **Example, not aligned:**
 
-```text
+```
 From: alerts@example.com
 Return-Path: bounce@mailer-example.net
 ```
@@ -246,7 +246,7 @@ SPF might pass perfectly for `mailer-example.net`. That's a genuinely valid SPF 
 
 The same logic applies to DKIM.
 
-```text
+```
 From: alerts@example.com
 ```
 
@@ -289,7 +289,7 @@ The tags worth knowing:
 
 Here's a realistic one, the kind you'd actually see in a ticket:
 
-```text
+```
 From: Microsoft Support <support@microsoft.com>
 Return-Path: bounce@mailer.attacker.net
 
@@ -317,7 +317,7 @@ It's worth walking through the other side of this too, because seeing a third-pa
 
 Say a company sends its newsletter through a marketing platform:
 
-```text
+```
 From: newsletter@example.com
 ```
 
@@ -340,7 +340,7 @@ A third-party hostname in `Return-Path` or a DKIM `d=` value that doesn't immedi
 
 This is the header you'll lean on most during triage, so it's worth having a fixed way of reading it.
 
-```text
+```
 Authentication-Results: mx.example.net;
     spf=pass smtp.mailfrom=bounce.example.com;
     dkim=pass header.d=example.com;
@@ -349,7 +349,7 @@ Authentication-Results: mx.example.net;
 
 The way I read this mentally:
 
-```text
+```
 SPF    PASS   bounce.example.com
 DKIM   PASS   example.com
 DMARC  PASS   example.com
@@ -357,7 +357,7 @@ DMARC  PASS   example.com
 
 Everything lines up. Compare that with:
 
-```text
+```
 spf=pass smtp.mailfrom=randommailer.net;
 dkim=pass header.d=randommailer.net;
 dmarc=fail header.from=example.com
@@ -410,7 +410,7 @@ What it does not inherently stop:
 
 **Display name impersonation.**
 
-```text
+```
 From: "Jason Hill" <attacker@gmail.com>
 ```
 
@@ -418,7 +418,7 @@ The display name says whatever the attacker wants. The actual address is `attack
 
 **Lookalike domains.**
 
-```text
+```
 example-security.com
 examp1e.com
 example-support.net
@@ -468,7 +468,7 @@ The first tells you the domain's SPF record (and anything else published in a ro
 
 Since a lot of SOC work happens in Microsoft environments, it's worth a quick mention. The headers you'll be looking at are the same ones covered above:
 
-```text
+```
 Authentication-Results:
 spf=pass
 dkim=pass
@@ -502,7 +502,7 @@ None of this is exotic once the core alignment concept clicks. Most of what look
 
 Shorter still:
 
-```text
+```
 SPF   = authorised sender
 DKIM  = cryptographic signature
 DMARC = alignment + policy

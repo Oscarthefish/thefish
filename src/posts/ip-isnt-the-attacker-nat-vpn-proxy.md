@@ -19,7 +19,7 @@ coverImageAlt: "Terminal-style illustration of a firewall log line, src_ip=198.5
 
 A SIEM alert lands in the queue:
 
-```text
+```
 Failed login
 User: jsmith@example.com
 Source IP: 198.51.100.42
@@ -38,7 +38,7 @@ It tells you where, in the network, a piece of activity was seen. It does not, b
 
 A better version of that case note is closer to this:
 
-```text
+```
 The authentication attempt was observed from 198.51.100.42,
 an IP geolocated to the Netherlands and associated with a
 commercial hosting/VPN provider.
@@ -102,7 +102,7 @@ If you only remember one line from this article, make it that last one. Everythi
 
 Here's a connection travelling from a home laptop to Microsoft 365, with a VPN in the middle:
 
-```text
+```
 Laptop
 192.168.1.20
     |
@@ -137,7 +137,7 @@ This is the concept I'll keep calling **network perspective**, or **observation 
 
 Most of the addresses you'll see inside an environment aren't publicly routable at all. RFC 1918 carves out three ranges specifically for private use, and you'll see them constantly in firewall, DHCP and endpoint logs:
 
-```text
+```
 10.0.0.0/8
 172.16.0.0/12
 192.168.0.0/16
@@ -153,7 +153,7 @@ A word on IPv6. With enough address space that NAT isn't structurally necessary 
 
 Network Address Translation is the most basic reason a single public IP can represent more than one device. A home network is the simplest case:
 
-```text
+```
 Laptop       192.168.1.10
 Phone        192.168.1.11
 TV           192.168.1.12
@@ -170,7 +170,7 @@ TV           192.168.1.12
 
 Every external system this household talks to will see all three devices as `203.0.113.25`. The router is doing Port Address Translation (PAT, sometimes just lumped in under "NAT") to keep multiple simultaneous connections straight, tracking them by port rather than address:
 
-```text
+```
 192.168.1.10:51822 -> 203.0.113.25:41001
 192.168.1.11:60214 -> 203.0.113.25:41002
 ```
@@ -183,13 +183,13 @@ The practical takeaway, and one worth internalising before you go anywhere near 
 
 Scale the household example up to an entire ISP or mobile carrier and you get Carrier-Grade NAT (CGNAT), which uses its own reserved shared space:
 
-```text
+```
 100.64.0.0/10
 ```
 
 Under CGNAT, an ISP places large numbers of unrelated customers behind the same handful of public IPv4 addresses, because it's run out of (or is conserving) IPv4 space:
 
-```text
+```
 Customer A
 Customer B
 Customer C
@@ -213,7 +213,7 @@ If you genuinely need to identify a specific subscriber behind CGNAT, you're gen
 
 This is the one you'll hit constantly, especially in identity alerts, so it's worth spending real time on.
 
-```text
+```
 User
 New Zealand
 203.0.113.10
@@ -245,7 +245,7 @@ This deserves special attention because it can completely flip how you read an i
 
 Say an employee in Auckland connects to their company's VPN before authenticating to Microsoft 365. Their sign-in might show up as originating from `203.0.113.80`, which happens to belong to the company's Australian datacentre. The identity platform, going purely on IP, reports:
 
-```text
+```
 User location: Sydney
 ```
 
@@ -259,7 +259,7 @@ The broader lesson: these location-based alerts are signals that something is in
 
 Worth its own short section since it follows directly from the VPN discussion. A classic alert:
 
-```text
+```
 08:55 Auckland IP
 09:07 Amsterdam IP
 ```
@@ -283,7 +283,7 @@ VPNs get most of the attention, but they're really one member of a broader famil
 
 <h3 id="forward-proxies">Forward proxies</h3>
 
-```text
+```
 User
 10.10.10.25
     |
@@ -301,7 +301,7 @@ The destination website sees `203.0.113.100`, the proxy, not the user's actual e
 
 A more deliberate version of the same idea: routing traffic through an ordinary consumer internet connection rather than a datacentre. The resulting IP looks, to your reputation feeds and GeoIP, exactly like a normal residential customer:
 
-```text
+```
 Residential broadband provider
 Auckland, New Zealand
 ```
@@ -316,7 +316,7 @@ A Tor exit node is the last relay before traffic reaches the open internet, and 
 
 A common one:
 
-```text
+```
 Suspicious authentication from 198.51.100.77
 ASN: major cloud provider
 ```
@@ -331,7 +331,7 @@ The cloud provider owns or announces the address block. A customer running on to
 
 A lookup on an IP will usually hand you something like:
 
-```text
+```
 IP: 198.51.100.42
 ASN: AS64500
 Organisation: Example Hosting Ltd
@@ -351,7 +351,7 @@ What it doesn't give you: proof that an employee of the registered organisation 
 
 GeoIP is an estimate, built from datasets that map address ranges to physical locations based on registration records, routing information and various forms of triangulation. It is not GPS, and it's worth treating the confidence level differently depending on how specific the claim is.
 
-```text
+```
 198.51.100.42
 Country: Netherlands
 City: Amsterdam
@@ -367,7 +367,7 @@ Reasons a GeoIP result can be flatly wrong or badly misleading: VPN exit nodes (
 
 Everything above has been about outbound traffic, where the destination sees an address further up the chain than the real client. Now flip it around: you're the one running the web service, and you need to figure out what's actually hitting you.
 
-```text
+```
 Client
 198.51.100.25
      |
@@ -390,19 +390,19 @@ Depending on logging configuration, your web server might record the connecting 
 
 Proxies and load balancers commonly add an `X-Forwarded-For` header so that systems further down the chain can see who the original client was:
 
-```text
+```
 X-Forwarded-For: 198.51.100.25
 ```
 
 Multiple hops append to the list:
 
-```text
+```
 X-Forwarded-For: 198.51.100.25, 203.0.113.10
 ```
 
 Here's the part that catches people out: this is just an HTTP header, and by default a client can send it themselves.
 
-```text
+```
 X-Forwarded-For: 1.2.3.4
 ```
 
@@ -418,7 +418,7 @@ If a public-facing application sits behind a CDN or WAF, your origin logs will s
 
 Put several of the pieces above together and you get something like this, a malicious request travelling through several hops before it reaches your web server:
 
-```text
+```
 Attacker device
         |
         v
@@ -439,7 +439,7 @@ Web server
 
 Depending on which system's logs you're reading, you'll see a different address for the same event:
 
-```text
+```
 VPN provider log:     residential proxy IP
 Cloudflare log:       VPN exit IP
 Load balancer log:    Cloudflare edge IP
@@ -454,7 +454,7 @@ If forwarding headers are configured correctly somewhere in that chain, some of 
 
 A typical entry:
 
-```text
+```
 src_ip=198.51.100.42
 dst_ip=203.0.113.20
 dst_port=443
@@ -469,7 +469,7 @@ What you can't automatically say, just from this one line: that this was the att
 
 A slightly richer example:
 
-```text
+```
 User: sarah@example.com
 Result: Success
 Source IP: 198.51.100.42
@@ -499,7 +499,7 @@ ISPs reassign addresses to customers regularly, which is exactly why a lookup on
 
 Which is really the same point stated more broadly: precise timestamps, including timezone, turn a weak observation into a usable one. "IP 198.51.100.42 attacked us yesterday" is close to useless for correlation. This is a lot more useful:
 
-```text
+```
 2026-09-20 03:42:17 UTC
 198.51.100.42
 source port 51822
