@@ -8,21 +8,89 @@ section: "posts"
   <div class="wrap">
     <p class="prompt">visitor@thefish.nz<span class="accent">:~$</span> {{ section }}<span class="cursor"></span></p>
     <h1>Posts</h1>
-    <div class="tag-cloud">
-      <a href="/posts/" class="tag active">all</a>
+
+    <div id="post-explorer" class="post-explorer" hidden>
+      <p class="post-explorer-lead">
+        Click a topic or start typing to follow the connections between posts.
+        <button type="button" class="post-explorer-help-toggle" id="explorer-help-toggle" aria-expanded="false" aria-controls="explorer-help">type <code>help</code> for commands</button>
+      </p>
+
+      <div id="explorer-help" class="post-explorer-help" hidden>
+        <p class="post-explorer-help-title">Commands (optional — typing a tag name works too)</p>
+        <dl>
+          <div><dt><code>add &lt;tag&gt;</code></dt><dd>select a tag</dd></div>
+          <div><dt><code>remove &lt;tag&gt;</code></dt><dd>deselect a tag</dd></div>
+          <div><dt><code>clear</code></dt><dd>deselect everything</dd></div>
+          <div><dt><code>reset</code></dt><dd>return the explorer to its initial state</dd></div>
+          <div><dt><code>mode and|or</code></dt><dd>switch match mode</dd></div>
+          <div><dt><code>posts on|off</code></dt><dd>toggle article nodes in the graph</dd></div>
+          <div><dt><code>focus &lt;tag&gt;</code></dt><dd>select and expand a tag</dd></div>
+          <div><dt><code>random</code></dt><dd>jump into a random topic</dd></div>
+          <div><dt><code>help</code></dt><dd>show this list</dd></div>
+        </dl>
+      </div>
+
+      <div class="post-explorer-graph-wrap">
+        <svg class="post-explorer-graph" id="explorer-graph" viewBox="0 0 600 440" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Tag relationship graph — decorative alternative to the search box below; use the search box for full keyboard access" aria-hidden="false">
+          <g id="explorer-edges"></g>
+          <g id="explorer-nodes"></g>
+        </svg>
+        <p class="post-explorer-legend"><span class="post-explorer-legend-dot" aria-hidden="true"></span> node size = posts &nbsp; <span class="post-explorer-legend-line" aria-hidden="true"></span> line = shared posts</p>
+      </div>
+
+      <div class="post-explorer-console">
+        <label class="post-explorer-console-label" for="explorer-input">Explore or filter by tag</label>
+        <div class="post-explorer-combobox">
+          <span class="post-explorer-glyph" aria-hidden="true">&gt;</span>
+          <input
+            type="text"
+            id="explorer-input"
+            class="post-explorer-input"
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-controls="explorer-listbox"
+            placeholder="soc, investigation… (or help)"
+          >
+        </div>
+        <ul id="explorer-listbox" class="post-explorer-listbox" role="listbox" aria-label="Tag suggestions" hidden></ul>
+      </div>
+
+      <div class="post-explorer-chips" id="explorer-chips" aria-label="Selected tags"></div>
+
+      <div class="post-explorer-controls">
+        <div class="post-explorer-mode" role="group" aria-label="Match mode">
+          <button type="button" class="post-explorer-mode-btn" data-mode="and" aria-pressed="true">AND</button>
+          <button type="button" class="post-explorer-mode-btn" data-mode="or" aria-pressed="false">OR</button>
+        </div>
+        <button type="button" class="post-explorer-toggle" id="explorer-posts-toggle" aria-pressed="false">Posts in graph: <span>OFF</span></button>
+        <button type="button" class="post-explorer-reset" id="explorer-reset">Reset</button>
+      </div>
+
+      <p class="post-explorer-status" id="explorer-status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="tag-cloud" id="post-tag-cloud">
+      <a href="/posts/" class="tag active" id="post-tag-cloud-all">all</a>
       {% for t in collections.tagList %}
-      <a href="/tags/{{ t }}/" class="tag">{{ t }}</a>
+      <a href="/tags/{{ t }}/" class="tag" data-tag="{{ t }}">{{ t }}</a>
       {% endfor %}
     </div>
+
+    <p class="post-results-count" id="post-results-count" aria-live="polite">{{ collections.posts.length }} posts</p>
+
     <div class="list-card">
-      <ul class="post-list">
+      <ul class="post-list" id="post-results-list">
         {% for post in collections.posts | reverse %}
-        <li class="post-list-item">
+        <li class="post-list-item" data-tags="{{ post.data.tags | publicTags | join(',') }}">
           <a class="post-list-title" href="{{ post.url }}">{{ post.data.title }}</a>
           <time class="post-list-date" datetime="{{ post.data.date | htmlDateString }}">{{ post.data.date | postDate }}</time>
           {% if post.data.tags %}
           <span class="post-tags">
-            {% for tag in post.data.tags %}{% if tag != "posts" %}<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>{% endif %}{% endfor %}
+            {% for tag in post.data.tags | publicTags %}<a class="tag" href="/tags/{{ tag }}/" data-tag="{{ tag }}">{{ tag }}</a>{% endfor %}
           </span>
           {% endif %}
         </li>
@@ -30,4 +98,11 @@ section: "posts"
       </ul>
     </div>
   </div>
+
+  <script type="application/json" id="post-graph-data">{{ collections.postGraph | toSafeJSON | safe }}</script>
+  <script src="/assets/js/vendor/d3-dispatch.min.js" defer></script>
+  <script src="/assets/js/vendor/d3-timer.min.js" defer></script>
+  <script src="/assets/js/vendor/d3-quadtree.min.js" defer></script>
+  <script src="/assets/js/vendor/d3-force.min.js" defer></script>
+  <script src="/assets/js/post-explorer.js" defer></script>
 </section>

@@ -748,3 +748,335 @@ input:focus-visible {
   outline: 2px solid var(--accent-teal);
   outline-offset: 2px;
 }
+
+/* ---------- post relationship explorer ---------- */
+.post-explorer {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  padding: 1.5rem;
+  margin: 1.5rem 0 2rem;
+}
+.post-explorer-lead {
+  font-size: 0.92rem;
+  color: var(--fg-muted);
+  margin: 0 0 1.1rem;
+}
+.post-explorer-help-toggle {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 0.35rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+.post-explorer-help-toggle:hover,
+.post-explorer-help-toggle:focus-visible { color: var(--accent-teal); text-decoration-color: currentColor; }
+.post-explorer-help-toggle code {
+  font-size: 0.82rem;
+  padding: 0.02em 0.3em;
+}
+
+.post-explorer-help {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  padding: 0.9rem 1.1rem;
+  margin: 0 0 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+.post-explorer-help-title {
+  margin: 0 0 0.6rem;
+  color: var(--fg-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.post-explorer-help dl { margin: 0; display: grid; gap: 0.4rem; }
+.post-explorer-help dl > div { display: flex; flex-wrap: wrap; gap: 0.15rem 0.75rem; }
+.post-explorer-help dt { color: var(--accent-teal); flex: 0 0 auto; }
+.post-explorer-help dd { margin: 0; color: var(--fg-muted); }
+
+.post-explorer-graph-wrap {
+  position: relative;
+  height: 440px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.post-explorer-graph {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.post-explorer-graph:active { cursor: grabbing; }
+.post-explorer-legend {
+  position: absolute;
+  left: 0.85rem;
+  bottom: 0.6rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--fg-muted);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.post-explorer-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fg-muted);
+  flex: 0 0 auto;
+}
+.post-explorer-legend-line {
+  width: 16px;
+  height: 0;
+  border-top: 2px solid var(--fg-muted);
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .post-explorer-graph-wrap { height: 320px; }
+}
+
+/* graph node / edge theming (elements are created client-side as SVG) */
+.pge-node { cursor: pointer; }
+/* invisible, generously-sized hit target — see post-explorer.js. Always
+   transparent regardless of node state (hover/selected/etc. rules below
+   target plain circles and would otherwise paint this one too). */
+.pge-node-hit { fill: transparent !important; stroke: none !important; }
+.pge-node circle {
+  fill: var(--bg-alt);
+  stroke: var(--fg-muted);
+  stroke-width: 1.5;
+  transition: stroke 0.15s, stroke-width 0.15s, fill 0.15s, fill-opacity 0.15s, opacity 0.2s;
+}
+.pge-node text {
+  font-family: var(--font-mono);
+  fill: var(--fg-muted);
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  transition: fill 0.15s, opacity 0.2s;
+}
+.pge-node--post circle {
+  fill: none;
+  stroke: var(--fg-muted);
+  stroke-dasharray: 2.5 3;
+}
+.pge-node--deemph circle { stroke-dasharray: 2 3; }
+.pge-node--hover circle,
+.pge-node:focus-visible circle { stroke: var(--accent-teal); stroke-width: 2.25; }
+.pge-node--hover text,
+.pge-node:focus-visible text { fill: var(--fg); }
+.pge-node--selected circle { stroke: var(--accent-teal); stroke-width: 2.5; fill: var(--accent-teal); fill-opacity: 0.22; }
+.pge-node--selected text { fill: var(--fg); font-weight: 600; }
+.pge-node--connected circle { stroke: var(--accent-amber); }
+.pge-node--dim { opacity: 0.32; }
+.pge-node:focus { outline: none; }
+
+.pge-edge {
+  stroke: var(--border);
+  fill: none;
+  transition: stroke 0.15s, stroke-opacity 0.15s, opacity 0.2s;
+}
+.pge-edge--active { stroke: var(--accent-teal); stroke-opacity: 0.85; }
+.pge-edge--dim { opacity: 0.25; }
+
+.post-explorer-console { margin-bottom: 0.75rem; }
+.post-explorer-console-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg-muted);
+  margin-bottom: 0.4rem;
+}
+.post-explorer-combobox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  padding: 0.55rem 0.75rem;
+}
+.post-explorer-combobox:focus-within { border-color: var(--accent-teal); }
+.post-explorer-glyph {
+  font-family: var(--font-mono);
+  color: var(--accent-teal);
+  flex: 0 0 auto;
+}
+.post-explorer-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  background: none;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  padding: 0.15rem 0;
+}
+.post-explorer-input:focus { outline: none; }
+.post-explorer-input::placeholder { color: var(--fg-muted); opacity: 0.7; }
+
+.post-explorer-listbox {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  max-height: 220px;
+  overflow-y: auto;
+}
+.post-explorer-listbox-option {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--fg);
+  cursor: pointer;
+}
+.post-explorer-listbox-option .count { color: var(--fg-muted); font-size: 0.75rem; white-space: nowrap; }
+.post-explorer-listbox-option[aria-selected="true"],
+.post-explorer-listbox-option:hover {
+  background: var(--bg-alt);
+  color: var(--accent-teal);
+}
+.post-explorer-listbox-option.is-command .count { color: var(--accent-amber); }
+.post-explorer-listbox-empty {
+  padding: 0.5rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+}
+
+.post-explorer-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  min-height: 1px;
+}
+.post-explorer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--bg);
+  background: var(--accent-teal);
+  border: 1px solid var(--accent-teal);
+  border-radius: 999px;
+  padding: 0.2rem 0.4rem 0.2rem 0.75rem;
+}
+.post-explorer-chip button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.15);
+  color: inherit;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.post-explorer-chip button:hover { background: rgba(0, 0, 0, 0.3); }
+
+.post-explorer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.post-explorer-mode {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.post-explorer-mode-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.85rem;
+  border: none;
+  background: none;
+  color: var(--fg-muted);
+  cursor: pointer;
+}
+.post-explorer-mode-btn[aria-pressed="true"] {
+  background: var(--accent-teal);
+  color: var(--bg);
+}
+.post-explorer-toggle,
+.post-explorer-reset {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.post-explorer-toggle span { color: var(--fg); font-weight: 600; }
+.post-explorer-toggle[aria-pressed="true"] span { color: var(--accent-teal); }
+.post-explorer-toggle:hover,
+.post-explorer-reset:hover { border-color: var(--accent-teal); color: var(--accent-teal); }
+.post-explorer-reset { margin-left: auto; }
+
+.post-explorer-status {
+  min-height: 1.4em;
+  margin: 0.85rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+}
+
+.post-results-count {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  margin: 0 0 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .post-explorer { padding: 1.1rem; }
+  .post-explorer-controls { gap: 0.75rem; }
+  .post-explorer-reset { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pge-node, .pge-node circle, .pge-node text, .pge-edge {
+    transition: none !important;
+  }
+}
