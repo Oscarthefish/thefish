@@ -386,6 +386,12 @@ section { padding: 4.5rem 0; }
 }
 .post-list-item:first-child { padding-top: 0; }
 .post-list-item:last-child { border-bottom: none; }
+/* The explorer filters this list by setting the native `hidden` attribute
+   on non-matching items (post-explorer.js). `display: flex` above has the
+   same specificity as the browser's default `[hidden] { display: none }`
+   rule, and author styles beat user-agent styles on a tie, so without this
+   the attribute would be set but have no visual effect. */
+.post-list-item[hidden] { display: none; }
 .post-list-title { color: var(--fg); font-weight: 500; flex: 1 1 auto; }
 .post-list-title:hover { color: var(--accent-teal); }
 .post-list-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--fg-muted); white-space: nowrap; }
