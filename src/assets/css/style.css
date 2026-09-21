@@ -18,7 +18,7 @@
      the extra space unused. Caps rather than growing indefinitely, since
      text set much wider than this gets harder to read line to line. */
   --content-w: clamp(960px, 72vw, 1200px);
-  --prose-w: clamp(42rem, 46vw, 52rem);
+  --prose-w: clamp(42rem, 62vw, 68rem);
   --body-bg: var(--bg);
   --card-shadow: none;
 }

@@ -36,7 +36,7 @@ description: "Personal site of Jason Hill, a New Zealand cyber security practiti
           <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
         </div>
         <div class="card-body">
-          <h3>{{ post.data.title }}</h3>
+          <h3><a class="card-title-link" href="{{ post.url }}">{{ post.data.title }}</a></h3>
           <time class="post-list-date">{{ post.data.date | postDate }}</time>
           {% if post.data.tags %}
           <div class="tags">
