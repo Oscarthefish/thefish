@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+  <title id="title">One alert, expanding outward into a scope graph</title>
+  <desc id="desc">A terminal-style illustration of a single alert node connected by thin relationship lines to a loosely expanding cluster of hosts, a domain, a user and a service account, showing how incident scope grows outward from one starting point.</desc>
+
+  <rect x="0" y="0" width="1200" height="630" fill="#1c1c1c" />
+
+  <!-- chrome bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1c1c1c" />
+  <rect x="0" y="63" width="1200" height="1" fill="#444444" />
+  <circle cx="40" cy="32" r="8" fill="#c07a7a" />
+  <circle cx="66" cy="32" r="8" fill="#b4a26a" />
+  <circle cx="92" cy="32" r="8" fill="#7fada0" />
+  <rect x="140" y="16" width="200" height="30" rx="15" fill="#262626" stroke="#444444" stroke-width="1" />
+  <text x="162" y="36" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#8f8f8f">scope.log</text>
+
+  <!-- connecting lines -->
+  <g stroke="#444444" stroke-width="1.5">
+    <line x1="230" y1="300" x2="400" y2="230" />
+    <line x1="230" y1="300" x2="400" y2="380" />
+    <line x1="400" y1="230" x2="580" y2="160" />
+    <line x1="400" y1="230" x2="580" y2="270" />
+    <line x1="400" y1="380" x2="580" y2="430" />
+    <line x1="580" y1="270" x2="770" y2="220" />
+    <line x1="580" y1="160" x2="770" y2="120" />
+    <line x1="580" y1="430" x2="770" y2="470" />
+  </g>
+
+  <!-- alert node -->
+  <circle cx="230" cy="300" r="28" fill="#262626" stroke="#7fada0" stroke-width="2.5" />
+  <text x="230" y="305" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="10" font-weight="700" fill="#7fada0">alert</text>
+
+  <!-- first ring: hosts -->
+  <circle cx="400" cy="230" r="21" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <text x="400" y="234" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f">host</text>
+
+  <circle cx="400" cy="380" r="21" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <text x="400" y="384" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f">host</text>
+
+  <!-- second ring: domain, user, server -->
+  <circle cx="580" cy="160" r="18" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <text x="580" y="164" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="8" fill="#8f8f8f">domain</text>
+
+  <circle cx="580" cy="270" r="18" fill="#1c1c1c" stroke="#b4a26a" stroke-width="1.8" />
+  <text x="580" y="274" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f">user</text>
+
+  <circle cx="580" cy="430" r="20" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.8" />
+  <text x="580" y="434" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="9" fill="#8f8f8f">server</text>
+
+  <!-- third ring: further hosts and service account -->
+  <circle cx="770" cy="120" r="14" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.6" />
+  <text x="770" y="124" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="8" fill="#8f8f8f">host</text>
+
+  <circle cx="770" cy="220" r="15" fill="#1c1c1c" stroke="#b4a26a" stroke-width="1.6" />
+  <text x="770" y="224" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#8f8f8f">svc acct</text>
+
+  <circle cx="770" cy="470" r="15" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.6" />
+  <text x="770" y="474" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="8" fill="#8f8f8f">host</text>
+
+  <!-- eyebrow -->
+  <text x="600" y="560" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#7fada0">WHERE ELSE DID THIS HAPPEN?</text>
+</svg>
