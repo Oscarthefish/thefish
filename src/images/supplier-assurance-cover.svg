@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+  <title id="title">A supplier access path from engineer to production</title>
+  <desc id="desc">A terminal-style illustration of a chain of nodes representing a supplier support engineer's access path: identity, MFA, VPN, jump host, privilege, and production.</desc>
+
+  <rect x="0" y="0" width="1200" height="630" fill="#1c1c1c" />
+
+  <!-- chrome bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1c1c1c" />
+  <rect x="0" y="63" width="1200" height="1" fill="#444444" />
+  <circle cx="40" cy="32" r="8" fill="#c07a7a" />
+  <circle cx="66" cy="32" r="8" fill="#b4a26a" />
+  <circle cx="92" cy="32" r="8" fill="#7fada0" />
+  <rect x="140" y="16" width="220" height="30" rx="15" fill="#262626" stroke="#444444" stroke-width="1" />
+  <text x="162" y="36" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#8f8f8f">supplier.log</text>
+
+  <!-- chain -->
+  <g stroke="#444444" stroke-width="1.5">
+    <line x1="140" y1="300" x2="270" y2="300" />
+    <line x1="270" y1="300" x2="400" y2="300" />
+    <line x1="400" y1="300" x2="530" y2="300" />
+    <line x1="530" y1="300" x2="660" y2="300" />
+    <line x1="660" y1="300" x2="790" y2="300" />
+    <line x1="790" y1="300" x2="940" y2="300" />
+  </g>
+
+  <circle cx="140" cy="300" r="20" fill="#262626" stroke="#b4a26a" stroke-width="2.2" />
+  <text x="140" y="304" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#b4a26a">engineer</text>
+
+  <circle cx="270" cy="300" r="16" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.6" />
+  <text x="270" y="304" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#8f8f8f">identity</text>
+
+  <circle cx="400" cy="300" r="16" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.6" />
+  <text x="400" y="304" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="8" fill="#8f8f8f">MFA</text>
+
+  <circle cx="530" cy="300" r="16" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.6" />
+  <text x="530" y="304" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="8" fill="#8f8f8f">VPN</text>
+
+  <circle cx="660" cy="300" r="16" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.6" />
+  <text x="660" y="304" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#8f8f8f">jump host</text>
+
+  <circle cx="790" cy="300" r="16" fill="#1c1c1c" stroke="#c07a7a" stroke-width="1.6" />
+  <text x="790" y="304" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#8f8f8f">privilege</text>
+
+  <circle cx="940" cy="300" r="22" fill="#262626" stroke="#b4a26a" stroke-width="2.2" />
+  <text x="940" y="304" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#b4a26a">production</text>
+
+  <!-- eyebrow -->
+  <text x="600" y="560" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#7fada0">INHERENT RISK COMES FIRST</text>
+</svg>

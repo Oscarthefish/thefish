@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+  <title id="title">Four stacked revision cards labelled CIS, NIST, ISO and NZISM</title>
+  <desc id="desc">A terminal-style illustration of four overlapping, cascading revision cards labelled CIS, NIST, ISO and NZISM, each with a small checkmark, suggesting quick recall rather than deep memorisation.</desc>
+
+  <rect x="0" y="0" width="1200" height="630" fill="#1c1c1c" />
+
+  <!-- chrome bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1c1c1c" />
+  <rect x="0" y="63" width="1200" height="1" fill="#444444" />
+  <circle cx="40" cy="32" r="8" fill="#c07a7a" />
+  <circle cx="66" cy="32" r="8" fill="#b4a26a" />
+  <circle cx="92" cy="32" r="8" fill="#7fada0" />
+  <rect x="140" y="16" width="220" height="30" rx="15" fill="#262626" stroke="#444444" stroke-width="1" />
+  <text x="162" y="36" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#8f8f8f">revise.log</text>
+
+  <!-- four cascading cards -->
+  <rect x="330" y="150" width="360" height="90" rx="10" fill="#1c1c1c" stroke="#444444" stroke-width="1.4" transform="rotate(-4 510 195)" />
+  <rect x="360" y="180" width="360" height="90" rx="10" fill="#1c1c1c" stroke="#444444" stroke-width="1.4" transform="rotate(-1.3 540 225)" />
+  <rect x="390" y="210" width="360" height="90" rx="10" fill="#1c1c1c" stroke="#444444" stroke-width="1.6" transform="rotate(1.3 570 255)" />
+  <rect x="420" y="240" width="360" height="90" rx="10" fill="#262626" stroke="#b4a26a" stroke-width="2.2" transform="rotate(4 600 285)" />
+
+  <text x="600" y="292" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="26" font-weight="600" fill="#b4a26a" transform="rotate(4 600 285)">NZISM</text>
+  <circle cx="740" cy="255" r="10" fill="none" stroke="#7fada0" stroke-width="2" transform="rotate(4 600 285)" />
+  <path d="M735 255 l4 4 l8 -9" stroke="#7fada0" stroke-width="2" fill="none" transform="rotate(4 600 285)" />
+
+  <text x="570" y="262" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="22" fill="#8f8f8f" opacity="0.85" transform="rotate(1.3 570 255)">ISO 27001</text>
+  <text x="540" y="232" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="22" fill="#8f8f8f" opacity="0.7" transform="rotate(-1.3 540 225)">NIST CSF</text>
+  <text x="510" y="202" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="22" fill="#8f8f8f" opacity="0.55" transform="rotate(-4 510 195)">CIS</text>
+
+  <!-- eyebrow -->
+  <text x="600" y="450" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#7fada0">KNOW THE SHAPE, NOT THE NUMBERS</text>
+</svg>

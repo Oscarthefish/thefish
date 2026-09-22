@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+  <title id="title">A branching question narrowing toward a skip path and a deeper path</title>
+  <desc id="desc">A terminal-style illustration of a question node branching into a short skip path and a longer path leading to several deeper follow-up question nodes.</desc>
+
+  <rect x="0" y="0" width="1200" height="630" fill="#1c1c1c" />
+
+  <!-- chrome bar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#1c1c1c" />
+  <rect x="0" y="63" width="1200" height="1" fill="#444444" />
+  <circle cx="40" cy="32" r="8" fill="#c07a7a" />
+  <circle cx="66" cy="32" r="8" fill="#b4a26a" />
+  <circle cx="92" cy="32" r="8" fill="#7fada0" />
+  <rect x="140" y="16" width="220" height="30" rx="15" fill="#262626" stroke="#444444" stroke-width="1" />
+  <text x="162" y="36" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#8f8f8f">questionnaire.log</text>
+
+  <!-- lines -->
+  <g stroke="#444444" stroke-width="1.5">
+    <line x1="220" y1="300" x2="400" y2="220" />
+    <line x1="220" y1="300" x2="400" y2="380" />
+    <line x1="400" y1="380" x2="560" y2="300" />
+    <line x1="400" y1="380" x2="560" y2="380" />
+    <line x1="400" y1="380" x2="560" y2="460" />
+  </g>
+
+  <!-- question node -->
+  <circle cx="220" cy="300" r="26" fill="#262626" stroke="#b4a26a" stroke-width="2.2" />
+  <text x="220" y="296" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#b4a26a">privi-</text>
+  <text x="220" y="306" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#b4a26a">leged?</text>
+
+  <!-- no / skip -->
+  <circle cx="400" cy="220" r="16" fill="#1c1c1c" stroke="#444444" stroke-width="1.6" stroke-dasharray="2 3" />
+  <text x="400" y="224" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="6.5" fill="#8f8f8f">skip</text>
+
+  <!-- yes -->
+  <circle cx="400" cy="380" r="18" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.6" />
+  <text x="400" y="384" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="7" fill="#8f8f8f">yes</text>
+
+  <!-- deeper nodes -->
+  <circle cx="560" cy="300" r="14" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.5" />
+  <text x="560" y="304" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="6" fill="#8f8f8f">MFA</text>
+
+  <circle cx="560" cy="380" r="14" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.5" />
+  <text x="560" y="384" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="6" fill="#8f8f8f">PAM</text>
+
+  <circle cx="560" cy="460" r="14" fill="#1c1c1c" stroke="#7fada0" stroke-width="1.5" />
+  <text x="560" y="464" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="6" fill="#8f8f8f">review</text>
+
+  <!-- eyebrow -->
+  <text x="600" y="560" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="4" fill="#7fada0">NOT THE ASSESSMENT ITSELF</text>
+</svg>
