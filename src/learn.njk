@@ -19,6 +19,7 @@ description: "Curated reading paths through thefish.nz: a deliberate order throu
         </div>
         <div class="card-body">
           <h2><a class="card-title-link" href="{{ path.url }}">{{ path.title }}</a></h2>
+          {% if path.routeSummary %}<p class="path-card-route">{{ path.routeSummary }}</p>{% endif %}
           <p>{{ path.description }}</p>
           <p class="path-card-meta">{{ path.stats.totalArticles }} articles &middot; {{ path.stats.essential }} essential &middot; ~{{ path.stats.totalReadingMinutes }} min total</p>
           <a class="card-link" href="{{ path.url }}">Start reading &rarr;</a>

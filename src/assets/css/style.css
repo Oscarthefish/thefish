@@ -1095,6 +1095,12 @@ input:focus-visible {
 .path-lead { color: var(--fg-muted); max-width: 62ch; margin: 0 0 2rem; }
 .path-grid { display: grid; gap: 1.25rem; margin: 1.5rem 0 2rem; }
 .path-card .card-body { display: flex; flex-direction: column; gap: 0.35rem; }
+.path-card-route {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-teal);
+  margin: 0 0 0.4rem;
+}
 .path-card-meta {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -1188,28 +1194,6 @@ input:focus-visible {
 @media (max-width: 640px) {
   .path-article-item { gap: 0.65rem; }
 }
-
-/* ---------- reading-path teaser on /posts/ ---------- */
-.path-teaser {
-  margin: 0 0 2rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg-alt);
-}
-.path-teaser-label {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--fg-muted);
-  margin: 0 0 0.6rem;
-}
-.path-teaser-route {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--fg);
-  margin: 0 0 0.85rem;
-}
-.path-teaser strong { color: var(--fg); }
 
 /* ---------- per-article reading-path navigation ---------- */
 .field-guides-details { cursor: default; }

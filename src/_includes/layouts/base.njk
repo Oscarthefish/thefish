@@ -62,6 +62,7 @@
       <nav class="tabs">
         <a href="/" class="{{ 'active' if page.url == '/' }}">cd ~</a>
         <a href="/posts/" class="{{ 'active' if page.url.startsWith('/posts/') }}">cd posts_</a>
+        <a href="/learn/" class="{{ 'active' if page.url.startsWith('/learn/') }}">cd learn_</a>
         <a href="/man_jason/" class="{{ 'active' if page.url == '/man_jason/' }}">man jason_</a>
       </nav>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light/dark theme">

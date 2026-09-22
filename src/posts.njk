@@ -9,14 +9,6 @@ section: "posts"
     <p class="prompt">visitor@thefish.nz<span class="accent">:~$</span> {{ section }}<span class="cursor"></span></p>
     <h1>Posts</h1>
 
-    <div class="path-teaser">
-      <p class="path-teaser-label">Prefer a guided route?</p>
-      {% for path in collections.learningPaths.paths %}
-      <p class="path-teaser-route"><strong>{{ path.title }}</strong><br>{{ path.routeSummary or path.description }}</p>
-      <a class="btn ghost" href="{{ path.url }}">Start reading &rarr;</a>
-      {% endfor %}
-    </div>
-
     <div id="post-explorer" class="post-explorer" hidden>
       <p class="post-explorer-lead">
         Click a topic or start typing to follow the connections between posts.
