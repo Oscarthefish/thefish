@@ -1,4 +1,28 @@
+import fs from "node:fs";
 import postGraphConfig from "./src/_data/postGraphConfig.js";
+import learningPathsConfig from "./src/_data/learningPathsConfig.js";
+
+// Rough, dependency-free reading-time estimate from a post's raw markdown
+// source: strip front matter, code, HTML and markdown punctuation, then
+// count words at a typical adult silent-reading pace. Good enough for a
+// "~14 min" label; not intended to be precise to the second.
+const WORDS_PER_MINUTE = 225;
+function estimateReadingMinutes(inputPath) {
+  try {
+    const raw = fs.readFileSync(inputPath, "utf8");
+    const withoutFrontmatter = raw.replace(/^---\n[\s\S]*?\n---\n/, "");
+    const plain = withoutFrontmatter
+      .replace(/```[\s\S]*?```/g, " ")
+      .replace(/`[^`]*`/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/[#>*_~]/g, " ");
+    const words = plain.split(/\s+/).filter(Boolean).length;
+    return words ? Math.max(1, Math.round(words / WORDS_PER_MINUTE)) : null;
+  } catch {
+    return null;
+  }
+}
 
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
@@ -119,6 +143,98 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("fieldGuides", (collectionApi) =>
     collectionApi.getFilteredByTag("field-guide"),
   );
+
+  eleventyConfig.addFilter("zeroPad", (n, len = 2) => String(n).padStart(len, "0"));
+
+  // Curated reading paths ("what should I read, in what order, and what
+  // actually matters"), a deliberately different concept from tags
+  // ("what's related to this subject"). Source curation lives in
+  // src/_data/learningPathsConfig.js (slugs + per-path priority only); this
+  // collection resolves each slug against the real post collection so
+  // title/description/URL always reflect the actual article, and computes
+  // step numbers, prev/next and a rough reading-time estimate.
+  //
+  // A typo'd slug in the config fails the build immediately rather than
+  // shipping a silently-broken link.
+  eleventyConfig.addCollection("learningPaths", (collectionApi) => {
+    const postByUrl = new Map(collectionApi.getFilteredByTag("posts").map((p) => [p.url, p]));
+    const priorityCounters = ["essential", "recommended", "optional", "reference"];
+
+    const paths = Object.entries(learningPathsConfig).map(([pathSlug, pathDef]) => {
+      const flatArticles = [];
+      let step = 0;
+
+      const sections = pathDef.sections.map((section) => ({
+        title: section.title,
+        description: section.description || "",
+        articles: section.articles.map((entry) => {
+          const url = `/posts/${entry.slug}/`;
+          const post = postByUrl.get(url);
+          if (!post) {
+            throw new Error(
+              `Learning path "${pathSlug}" references unknown post slug "${entry.slug}" (expected a post at ${url}). Fix src/_data/learningPathsConfig.js.`,
+            );
+          }
+          step += 1;
+          const article = {
+            step,
+            slug: entry.slug,
+            url: post.url,
+            title: post.data.title,
+            description: post.data.description || "",
+            priority: entry.priority,
+            readingMinutes: estimateReadingMinutes(post.inputPath),
+          };
+          flatArticles.push(article);
+          return article;
+        }),
+      }));
+
+      const stats = { totalArticles: flatArticles.length, totalReadingMinutes: 0 };
+      priorityCounters.forEach((p) => (stats[p] = 0));
+      flatArticles.forEach((a) => {
+        if (Object.prototype.hasOwnProperty.call(stats, a.priority)) stats[a.priority] += 1;
+        stats.totalReadingMinutes += a.readingMinutes || 0;
+      });
+
+      return {
+        slug: pathSlug,
+        url: `/learn/${pathSlug}/`,
+        title: pathDef.title,
+        description: pathDef.description,
+        routeSummary: pathDef.routeSummary || "",
+        audience: pathDef.audience || [],
+        sections,
+        flatArticles,
+        stats,
+      };
+    });
+
+    // post url -> [{ pathSlug, pathTitle, pathUrl, step, total, priority, prev, next }, ...]
+    // an array so a post belonging to more than one path (not used yet, but
+    // supported) renders one nav entry per path rather than only the first.
+    const membership = {};
+    paths.forEach((path) => {
+      path.flatArticles.forEach((article, index) => {
+        const prev = path.flatArticles[index - 1] || null;
+        const next = path.flatArticles[index + 1] || null;
+        const entry = {
+          pathSlug: path.slug,
+          pathTitle: path.title,
+          pathUrl: path.url,
+          step: article.step,
+          total: path.flatArticles.length,
+          priority: article.priority,
+          prev: prev ? { url: prev.url, title: prev.title } : null,
+          next: next ? { url: next.url, title: next.title } : null,
+        };
+        if (!membership[article.url]) membership[article.url] = [];
+        membership[article.url].push(entry);
+      });
+    });
+
+    return { paths, membership };
+  });
 
   // Safe to drop straight into a <script type="application/json"> block:
   // escapes characters that could otherwise prematurely close the tag.

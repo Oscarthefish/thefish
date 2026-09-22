@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: "Reading Paths"
+section: "cat learning-paths.txt"
+seoTitle: "Reading Paths | thefish.nz"
+description: "Curated reading paths through thefish.nz: a deliberate order through the articles that matter most for a given security role, instead of browsing by tag alone."
+---
+<section class="page-section">
+  <div class="wrap prose">
+    <p class="prompt">visitor@thefish.nz<span class="accent">:~$</span> {{ section }}<span class="cursor"></span></p>
+    <h1>Reading Paths</h1>
+    <p class="path-lead">Tags answer "what's related to this?" A reading path answers "where do I start, and what order matters?" Each path below is a deliberately curated route through a handful of articles, not an automatically generated list. Pick the one closest to your goal and follow it top to bottom.</p>
+
+    <div class="path-grid">
+      {% for path in collections.learningPaths.paths %}
+      <div class="terminal-card path-card">
+        <div class="card-chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+        <div class="card-body">
+          <h2><a class="card-title-link" href="{{ path.url }}">{{ path.title }}</a></h2>
+          <p>{{ path.description }}</p>
+          <p class="path-card-meta">{{ path.stats.totalArticles }} articles &middot; {{ path.stats.essential }} essential &middot; ~{{ path.stats.totalReadingMinutes }} min total</p>
+          <a class="card-link" href="{{ path.url }}">Start reading &rarr;</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <p class="see-all"><a class="card-link" href="/posts/">Prefer to browse by topic instead? All posts &rarr;</a></p>
+  </div>
+</section>

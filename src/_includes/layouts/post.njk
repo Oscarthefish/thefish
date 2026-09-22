@@ -21,16 +21,25 @@ layout: base.njk
             </p>
           </header>
 
+          {% set pathMemberships = collections.learningPaths.membership[page.url] %}
+          {% if pathMemberships %}
+          <div class="path-nav-top">
+            {% for m in pathMemberships %}
+            <p>Part of <a href="{{ m.pathUrl }}">{{ m.pathTitle }}</a> &middot; Step {{ m.step }} of {{ m.total }} &middot; <span class="priority-badge priority-{{ m.priority }}">{{ m.priority }}</span></p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
           {% set relatedGuides = collections.fieldGuides | filterBySeries(series) %}
           {% if tags and "field-guide" in tags %}
-          <div class="series-box">
-            <p class="series-label">Field guides</p>
+          <details class="series-box field-guides-details">
+            <summary>Browse all {{ relatedGuides.length }} field guides</summary>
             <ol>
               {% for guide in relatedGuides %}
               <li>{% if guide.url == page.url %}<strong>{{ guide.data.title }}</strong> <span class="series-current">(this article)</span>{% else %}<a href="{{ guide.url }}">{{ guide.data.title }}</a>{% endif %}</li>
               {% endfor %}
             </ol>
-          </div>
+          </details>
           {% endif %}
 
           {% if coverImage %}
@@ -40,6 +49,21 @@ layout: base.njk
           <div class="post-content">
             {{ content | safe }}
           </div>
+
+          {% if pathMemberships %}
+          {% for m in pathMemberships %}
+          <nav class="path-nav-bottom" aria-label="{{ m.pathTitle }} reading path navigation">
+            {% if m.prev %}
+            <a class="path-nav-bottom-item prev" href="{{ m.prev.url }}"><span class="path-nav-dir">&larr; Previous &middot; {{ m.pathTitle }}</span>{{ m.prev.title }}</a>
+            {% else %}
+            <span></span>
+            {% endif %}
+            {% if m.next %}
+            <a class="path-nav-bottom-item next" href="{{ m.next.url }}"><span class="path-nav-dir">Next &middot; {{ m.pathTitle }} &rarr;</span>{{ m.next.title }}</a>
+            {% endif %}
+          </nav>
+          {% endfor %}
+          {% endif %}
         </div>
       </div>
 

@@ -1,0 +1,65 @@
+---
+pagination:
+  data: collections.learningPaths.paths
+  size: 1
+  alias: path
+permalink: "/learn/{{ path.slug }}/"
+layout: base.njk
+eleventyComputed:
+  title: "{{ path.title }}"
+  seoTitle: "{{ path.title }} Learning Path | thefish.nz"
+  description: "{{ path.description }}"
+  section: "cat learning-paths/{{ path.slug }}.txt"
+---
+<section class="page-section">
+  <div class="wrap prose">
+    <p class="prompt">visitor@thefish.nz<span class="accent">:~$</span> {{ section }}<span class="cursor"></span></p>
+
+    <header class="path-header">
+      <p class="eyebrow">READING PATH</p>
+      <h1>{{ path.title }}</h1>
+      <p class="path-description">{{ path.description }}</p>
+      {% if path.audience.length %}
+      <p class="path-audience">For: {{ path.audience | join(", ") }}</p>
+      {% endif %}
+      <p class="path-stats">
+        <span>{{ path.stats.totalArticles }} articles</span>
+        <span>{{ path.stats.essential }} essential</span>
+        {% if path.stats.recommended %}<span>{{ path.stats.recommended }} recommended</span>{% endif %}
+        {% if path.stats.optional %}<span>{{ path.stats.optional }} optional</span>{% endif %}
+        {% if path.stats.reference %}<span>{{ path.stats.reference }} reference</span>{% endif %}
+        <span>~{{ path.stats.totalReadingMinutes }} min total</span>
+      </p>
+      <p class="path-progress-note" id="path-progress" data-path="{{ path.slug }}" data-essential-total="{{ path.stats.essential }}" hidden></p>
+    </header>
+
+    {% for section in path.sections %}
+    <section class="path-section">
+      <h2>{{ section.title }}</h2>
+      {% if section.description %}<p class="path-section-desc">{{ section.description }}</p>{% endif %}
+      <ol class="path-article-list">
+        {% for article in section.articles %}
+        <li class="path-article-item">
+          <span class="path-step" aria-hidden="true">{{ article.step | zeroPad }}</span>
+          <div class="path-article-body">
+            <span class="priority-badge priority-{{ article.priority }}">{{ article.priority }}</span>
+            <a class="path-article-title" href="{{ article.url }}">{{ article.title }}</a>
+            {% if article.description %}<p class="path-article-desc">{{ article.description }}</p>{% endif %}
+            <p class="path-article-foot">
+              {% if article.readingMinutes %}<span>~{{ article.readingMinutes }} min</span>{% endif %}
+              <label class="path-read-toggle">
+                <input type="checkbox" class="path-read-checkbox" data-url="{{ article.url }}" data-priority="{{ article.priority }}">
+                <span>Read</span>
+              </label>
+            </p>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+    {% endfor %}
+
+    <p class="see-all"><a class="card-link" href="/learn/">&larr; all reading paths</a></p>
+  </div>
+</section>
+<script src="/assets/js/path-progress.js" defer></script>
