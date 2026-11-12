@@ -1,0 +1,30 @@
+{#
+  Responsive photograph for photo-essay posts (see layouts/photo-essay.njk).
+
+  Expects pre-generated, metadata-stripped WebP derivatives in
+  src/images/<dir>/<slug>-<width>.webp:
+    landscape (4:3): 640, 1024, 1600, 2048  -> intrinsic 2048x1542
+    portrait  (3:4): 480, 800, 1200, 1536   -> intrinsic 1536x2040
+
+  variant controls width in the essay column and the `sizes` hint:
+    wide     - full card width (immersive landscapes)
+    text     - reading-column width
+    portrait - narrower, centred single portrait
+    pair     - one half of an .essay-pair row (wrap two in <div class="essay-pair">)
+    hero     - edge-to-edge at the top of the card, loaded eagerly
+
+  Output deliberately has no blank lines or leading indentation so it stays a
+  single HTML block when called from markdown.
+#}
+{% macro photo(dir, slug, alt, caption, orient="l", variant="text", eager=false) -%}
+{%- if orient == "p" -%}{%- set widths = [480, 800, 1200, 1536] -%}{%- set w = 1536 -%}{%- set h = 2040 -%}
+{%- else -%}{%- set widths = [640, 1024, 1600, 2048] -%}{%- set w = 2048 -%}{%- set h = 1542 -%}{%- endif -%}
+{%- if variant == "hero" or variant == "wide" -%}{%- set sizes = "(min-width: 1240px) 1150px, 100vw" -%}
+{%- elif variant == "pair" -%}{%- set sizes = "(min-width: 1240px) 560px, (min-width: 720px) 46vw, 100vw" -%}
+{%- elif variant == "portrait" -%}{%- set sizes = "(min-width: 600px) 480px, 100vw" -%}
+{%- else -%}{%- set sizes = "(min-width: 820px) 720px, 100vw" -%}{%- endif -%}
+<figure class="essay-figure essay-figure--{{ variant }} {{ 'is-portrait' if orient == 'p' else 'is-landscape' }}">
+<img src="/images/{{ dir }}/{{ slug }}-{{ widths[2] }}.webp" srcset="{% for width in widths %}/images/{{ dir }}/{{ slug }}-{{ width }}.webp {{ width }}w{% if not loop.last %}, {% endif %}{% endfor %}" sizes="{{ sizes }}" width="{{ w }}" height="{{ h }}" alt="{{ alt }}" decoding="async"{% if eager %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+{% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+</figure>
+{%- endmacro %}

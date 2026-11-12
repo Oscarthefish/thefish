@@ -1242,3 +1242,93 @@ input:focus-visible {
   .path-nav-bottom-item { max-width: 100%; }
   .path-nav-bottom-item.next { text-align: left; margin-left: 0; }
 }
+
+/* ---------- photo essay (layouts/photo-essay.njk) ----------
+   Personal/photographic writing. Same card and type as a normal post, but a
+   ~720px reading column with photographs allowed to run wider than the text.
+   Photos are left untreated (no filters/overlays) to keep their own colour. */
+.essay-wrap { max-width: min(var(--content-w), 76rem); }
+.essay .card-content { padding: 2.75rem 2.5rem 3.5rem; }
+
+.essay-header,
+.post-content.essay-content > * {
+  max-width: 45rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.essay-header { margin-bottom: 2.75rem; }
+.essay-header h1 { font-size: clamp(1.9rem, 4vw, 2.5rem); margin-bottom: 0.75rem; }
+.essay-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--fg-muted);
+  margin: 0 0 1.25rem;
+}
+
+.essay-content { font-size: 1.125rem; line-height: 1.75; }
+.essay-content p { margin-bottom: 1.15rem; }
+.essay-content h2 { font-size: 1.3rem; margin-top: 3.25rem; margin-bottom: 1.1rem; }
+.essay-content > p:first-of-type { font-size: 1.25rem; line-height: 1.65; }
+
+/* figures */
+.post-content .essay-figure { margin-top: 2.75rem; margin-bottom: 2.75rem; }
+.essay-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: var(--bg);
+}
+.post-content .essay-figure figcaption { margin-top: 0.6rem; font-size: 0.78rem; }
+.post-content.essay-content > .essay-figure--wide,
+.post-content.essay-content > .essay-pair { max-width: none; }
+.post-content.essay-content > .essay-figure--wide { margin-top: 3.25rem; margin-bottom: 3.25rem; }
+.post-content.essay-content > .essay-figure--portrait { max-width: 30rem; }
+
+/* two photos side by side; bottom-aligned so mixed aspect ratios sit on one
+   baseline, each keeping its own proportions (nothing cropped) */
+.essay-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: end;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.post-content .essay-pair .essay-figure { margin: 0; }
+
+/* hero: edge to edge under the card chrome */
+.essay-figure--hero { margin: 0; }
+.essay-figure--hero img { border-radius: 0; }
+.essay-figure--hero figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  text-align: right;
+  padding: 0.6rem 1rem 0;
+}
+
+/* quiet ending: the last two lines stand on their own */
+.post-content.essay-content > .essay-coda { margin-top: 3rem; }
+.essay-coda p { font-size: 1.2rem; }
+.essay-coda p:last-child { margin-bottom: 0; }
+
+@media (max-width: 720px) {
+  .essay-pair { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 640px) {
+  .essay-section { padding: 1.5rem 0 2.5rem; }
+  .essay-wrap { padding: 0 0.75rem; }
+  .essay .card-content { padding: 1.75rem 1.25rem 2.5rem; }
+  .essay-header h1 { font-size: 1.75rem; }
+  .essay-subtitle { font-size: 1.08rem; }
+  .essay-content { font-size: 1.0625rem; line-height: 1.7; }
+  .essay-content > p:first-of-type { font-size: 1.15rem; }
+  .essay-content h2 { margin-top: 2.5rem; }
+  /* wide landscapes run to the card edges on phones */
+  .post-content.essay-content > .essay-figure--wide {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+  }
+  .essay-figure--wide img { border-radius: 0; }
+  .post-content .essay-figure--wide figcaption { padding: 0 1.25rem; }
+}

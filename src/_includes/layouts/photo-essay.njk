@@ -1,0 +1,53 @@
+---
+layout: base.njk
+---
+{#
+  Photographic essay variant of post.njk for personal/travel writing.
+  Same card, header, meta and tag conventions as a normal post, but with an
+  edge-to-edge hero photograph, a narrower reading column (~720px) and
+  photographs that can break out wider than the text. Photos are placed
+  inline in the markdown with the macro in macros/essay-photo.njk.
+
+  Front matter: subtitle, hero { dir, slug, alt, caption }, plus the usual
+  title/date/tags/description. Set socialImage/ogType for sharing metadata.
+#}
+{% from "macros/essay-photo.njk" import photo %}
+{% set readingMinutes = ((content | striptags | wordcount) / 225) | round %}
+<section class="page-section essay-section">
+  <div class="wrap essay-wrap">
+    <article class="post essay">
+      <div class="terminal-card">
+        <div class="card-chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+
+        {% if hero %}
+        {{ photo(hero.dir, hero.slug, hero.alt, hero.caption, "l", "hero", true) }}
+        {% endif %}
+
+        <div class="card-content">
+          <header class="post-header essay-header">
+            <h1>{{ title }}</h1>
+            {% if subtitle %}<p class="essay-subtitle">{{ subtitle }}</p>{% endif %}
+            <p class="post-meta">
+              <time datetime="{{ date | htmlDateString }}">{{ date | postDate }}</time>
+              <span aria-hidden="true">&middot;</span>
+              <span>{{ readingMinutes }} min read</span>
+              {% if tags %}
+              <span class="post-tags">
+                {% for tag in tags %}{% if tag != "posts" %}<a class="tag" href="/tags/{{ tag }}/">{{ tag }}</a>{% endif %}{% endfor %}
+              </span>
+              {% endif %}
+            </p>
+          </header>
+
+          <div class="post-content essay-content">
+            {{ content | safe }}
+          </div>
+        </div>
+      </div>
+
+      <p class="post-back"><a href="/posts/">&larr; back to all posts</a></p>
+    </article>
+  </div>
+</section>
